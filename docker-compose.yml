@@ -1,0 +1,37 @@
+services:
+  web:
+    tty: true
+    stdin_open: true
+    image: odoo:17.0
+    depends_on:
+      - db
+    ports:
+      - "8069:8069"
+    volumes:
+      - .volume/web:/var/lib/odoo
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+    environment:
+      - PASSWORD_FILE=/run/secrets/postgresql_password
+      - PYTHONDONTWRITEBYTECODE=1
+    secrets:
+      - postgresql_password
+    command: odoo -d init --dev xml
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgresql_password
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - .volume/db:/var/lib/postgresql/data/pgdata
+    secrets:
+      - postgresql_password
+    ports:
+      - "5432:5432"
+
+secrets:
+  postgresql_password:
+    file: odoo_pg_pass
