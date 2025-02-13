@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="xlsx_previewer_form" model="ir.ui.view">
+            <field name="name">xlsx.previewer.form</field>
+            <field name="model">xlsx.previewer</field>
+            <field name="arch" type="xml">
+                <form>
+                    <script>
+                        $(document).ready(function(){
+                        $('.modal-dialog').css({'max-width': '90%'});
+                        $('.modal-content').css({'max-width': '100%'});
+                        });
+                    </script>
+                    <field name="iframe" />
+                    <footer>
+                        <button name="download_file" class="btn-primary" string="Download"
+                            type="object" />
+                        <button class="btn" string="Close" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="xlsx_previewer_action" model="ir.actions.act_window">
+            <field name="name">PDF Previewer</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pdf.previewer</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

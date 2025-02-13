@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <menuitem id="stock.menu_reordering_rules_config" active="False" />
+        <menuitem id="stock.menu_wms_barcode_nomenclature_all" active="False" />
+        <menuitem id="stock.menu_stock_scrap" active="False" />
+        <menuitem id="stock.menu_reordering_rules_replenish" active="False" />
+        <menuitem id="stock.menu_procurement_compute" active="False" />
+        <menuitem id="stock.menu_stock_transfers" active="False" />
+        <menuitem id="stock.menu_action_warehouse_form" active="False" />
+        <menuitem id="stock.menu_warehouse_config" active="False" />
+        <menuitem id="stock.stock_picking_type_menu" active="False" />
+        <menuitem id="stock.menu_warehouse_report" active="False" />
+        <menuitem id="stock.menu_stock_warehouse_mgmt" active="False" />
+        <menuitem id="stock.menu_stock_inventory_control" active="False" />
+
+        <menuitem id="menu_stock_report" parent="stock.menu_stock_root" name="รายงาน"/>
+    </data>
+</odoo>

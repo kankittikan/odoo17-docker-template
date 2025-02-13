@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="seq_product_import" model="ir.sequence">
+        <field name="name">Product Import</field>
+        <field name="code">product.import</field>
+        <field name="prefix">IMP-%(y)s%(month)s</field>
+        <field name="padding">4</field>
+        <field name="use_date_range">True</field>
+        <field name="range_reset">monthly</field>
+    </record>
+
+    <record id="seq_product_request" model="ir.sequence">
+        <field name="name">Product Request</field>
+        <field name="code">product.request</field>
+        <field name="prefix">REQ-%(y)s%(month)s</field>
+        <field name="padding">4</field>
+        <field name="use_date_range">True</field>
+        <field name="range_reset">monthly</field>
+    </record>
+</odoo>

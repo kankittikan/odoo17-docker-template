@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+evme_base.access_pdf_previewer,access_pdf_previewer,document_previewer.model_pdf_previewer,base.group_user,1,1,1,1
+evme_base.access_xlsx_previewer,access_xlsx_previewer,document_previewer.model_xlsx_previewer,base.group_user,1,1,1,1

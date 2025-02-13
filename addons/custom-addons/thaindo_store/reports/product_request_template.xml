@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="product_request_report">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style>
+                        @font-face {
+                        font-family: 'Sarabun';
+                        src:
+                        url(https://fonts.gstatic.com/s/sarabun/v15/DtVjJx26TKEr37c9aAFJn3YO5gjupg.woff2)
+                        }
+
+                        .sarabun-regular {
+                        font-family: "Sarabun";
+                        font-weight: 400;
+                        font-style: normal;
+                        font-size: 14px;
+                        }
+                        th, td {
+                        padding: 10px;
+                        }
+                    </style>
+                    <div class="border border-dark sarabun-regular">
+                        <div class="row m-0">
+                            <div class="col-4 header-company-logo m-2">
+                                <img t-if="o.company_id.logo"
+                                    t-att-src="image_data_uri(o.company_id.logo)" class="float-left"
+                                    style="max-height: 6rem; max-width: 6rem; width: auto; height: auto; display: block;"
+                                    alt="Logo" />
+                            </div>
+                            <div class="col-4 text-center" style="margin-top: 12px">
+                                <span t-field="o.user_id.company_id.name" />
+                                <br />
+                                <span style="font-size: 12px" t-field="o.user_id.company_id.street" />
+                            </div>
+                        </div>
+                        <table class="border-top border-dark" style="width: 100%;">
+                            <tr>
+                                <td>รายการเบิก</td>
+                                <td class="border-start border-dark col-10">
+                                    <span t-field="o.name" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="border-top border-dark" style="width: 100%;">
+                            <tr>
+                                <td>แผนกที่เบิก</td>
+                                <td class="">
+                                    <span t-field="o.department_id" />
+                                </td>
+                                <td>วันที่เบิก</td>
+                                <td class="">
+                                    <span t-field="o.datetime" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>วัตถุประสงค์</td>
+                                <td class="">
+                                    <span t-field="o.purpose" />
+                                </td>
+                            </tr>
+                            <tr t-if="o.doc_ref">
+                                <td>เอกสารต้นทาง</td>
+                                <td class="">
+                                    <span t-field="o.doc_ref" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>หมายเหตุ</td>
+                                <td>
+                                    <span t-field="o.note" />
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="border-top border-dark" style="width: 100%;">
+                           <thead style="background-color: #FFFAEC">
+                                    <th class="border-end border-dark">ชื่อสินค้า</th>
+                                    <th class="border-end border-dark">หมวดหมู่</th>
+                                    <th class="border-end border-dark">หน่วยวัด</th>
+                                    <th class="border-dark">จำนวนเบิก</th>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.line_ids" t-as="line">
+                                        <td class="border-end border-top border-dark"><span t-field="line.product_id.name"/></td>
+                                        <td class="border-end border-top border-dark"><span t-field="line.product_id.categ_id.name"/></td>
+                                        <td class="border-end border-top border-dark"><span t-field="line.uom_id"/></td>
+                                        <td class="border-top border-dark text-end"><span t-field="line.qty"/></td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                        <table class="border-top border-dark" style="width: 100%;">
+                            <tr>
+                                <td class="col-2">ผู้ทำรายการเบิก</td>
+                                <td class="border-start border-dark">
+                                    <span t-field="o.user_id.name" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="action_product_request_report" model="ir.actions.report">
+        <field name="name">Product Request</field>
+        <field name="model">product.request</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">thaindo_store.product_request_report</field>
+        <field name="report_file">thaindo_store.product_request_report</field>
+        <field name="print_report_name">'ใบเบิก - %s' % (object.name)</field>
+        <field name="paperformat_id" ref="thaindo_base.thaindo_document_paperformat_a4" />
+        <field name="binding_model_id" eval="False" />
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
