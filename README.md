@@ -1,3 +1,3 @@
 # odoo17-docker-template
 
-Insert your addons under addons directory
+Add your custom addons under addons directory
