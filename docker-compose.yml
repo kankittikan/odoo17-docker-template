@@ -16,7 +16,7 @@ services:
       - PYTHONDONTWRITEBYTECODE=1
     secrets:
       - postgresql_password
-    command: odoo -u thaindo_base,thaindo_store,thaindo_maintenance -d prod --dev xml
+    command: odoo -d db --dev xml
 
   db:
     image: postgres:15
